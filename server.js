@@ -1,16 +1,14 @@
-import express from "express";
-import cors from "cors";
-import client from "./db";
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-client.connect((err) => {
-  if (err) {
-    console.log("Error connecting to the database");
-    return;
-  }
+app.get("/message", (req, res) => {
+  res.json({ message: "To-Do App" });
+});
 
-  app.listen(3080, () => {
-    console.log("server running on port 3080");
-  });
+app.listen(8000, () => {
+  console.log("server running on port 8000");
 });
