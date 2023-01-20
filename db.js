@@ -1,7 +1,17 @@
-const MongoClient = require("mongodb").MongoClient;
+const mongoose = require("mongoose");
 
-const uri = "";
-
-const client = new MongoClient(uri, { useNewUrlParser: true });
-
-module.exports = client;
+module.exports = async () => {
+  try {
+    const connectionParams = {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    };
+    await mongoose.connect(
+      "mongodb+srv://geeta:12345@to-do-app.qpxehtw.mongodb.net/test"
+    );
+    console.log("Connected to database.");
+  } catch (e) {
+    console.log("Could not connect to db.\n", e);
+  }
+};
